@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from './config/config';
+import { EquipmentModule } from './equipment/equipment.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { config } from './config/config';
       synchronize: true,
     }),
     UserModule,
+    EquipmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
