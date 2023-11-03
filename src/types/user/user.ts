@@ -22,3 +22,8 @@ export interface OneUserResponse {
   lastName: string;
   email: string;
 }
+
+export interface UsersIdAndLastnameResponse {
+  id: string;
+  lastName: string;
+}

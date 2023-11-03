@@ -1,10 +1,18 @@
-import {Body, Controller, Delete, Get, Inject, Param, Patch, Post} from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Inject,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 import { AddUserDto } from './dto/add-user.dto';
-import { AddUserResponse } from '../types';
-import {UpdateEquipmentDto} from "../equipment/dto/update-equipment.dto";
-import {UpdateUserDto} from "./dto/update-user.dto";
+import {AddUserResponse, UsersIdAndLastnameResponse} from '../types';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -13,6 +21,10 @@ export class UserController {
   @Get('/')
   getAllUsers(): Promise<User[]> {
     return this.userService.getAllUsers();
+  }
+  @Get('/usersid')
+  getIdAndLastname() {
+    return this.userService.getData();
   }
   @Get(':id')
   findOne(@Param('id') id: string) {

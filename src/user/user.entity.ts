@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Equipment } from '../equipment/entities/equipment.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -20,4 +27,7 @@ export class User extends BaseEntity {
     unique: true,
   })
   email: string;
+
+  @OneToMany(type => Equipment, (entity) => entity.user)
+  equipment: Equipment[];
 }
