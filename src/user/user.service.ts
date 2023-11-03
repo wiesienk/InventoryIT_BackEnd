@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User } from './user.entity';
 import { AddUserDto } from './dto/add-user.dto';
-import { AddUserResponse } from '../types';
+import { AddUserResponse, UsersIdAndLastnameResponse } from '../types';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
@@ -39,5 +39,13 @@ export class UserService {
   async removeUser(id: string) {
     const user = await User.findOne({ where: { id } });
     await user.remove();
+  }
+
+  async getData(): Promise<UsersIdAndLastnameResponse[]> {
+    const users = await User.find();
+    const result = users.map((item) => {
+      return { id: item.id, lastName: item.lastName };
+    });
+    return result;
   }
 }
