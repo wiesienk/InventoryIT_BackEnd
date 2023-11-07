@@ -7,12 +7,14 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 import { AddUserDto } from './dto/add-user.dto';
-import {AddUserResponse, UsersIdAndLastnameResponse} from '../types';
+import { AddUserResponse, UsersIdAndLastnameResponse } from '../types';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
