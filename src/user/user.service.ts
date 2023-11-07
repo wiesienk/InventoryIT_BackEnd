@@ -1,11 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { User } from './user.entity';
 import { AddUserDto } from './dto/add-user.dto';
 import { AddUserResponse, UsersIdAndLastnameResponse } from '../types';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { EquipmentService } from '../equipment/equipment.service';
+import { Equipment } from '../equipment/entities/equipment.entity';
 
 @Injectable()
 export class UserService {
+  constructor(
+    @Inject(forwardRef(() => EquipmentService))
+    private equipmentService: EquipmentService,
+  ) {}
   filter(user: User): AddUserResponse {
     const { id, email } = user;
     return { id, email };
@@ -37,8 +43,29 @@ export class UserService {
   }
 
   async removeUser(id: string) {
-    const user = await User.findOne({ where: { id } });
-    await user.remove();
+    const userEquipment = await Equipment.find({
+      where: { user: { id: id } },
+      relations: ['user'],
+    });
+
+    await Promise.all(
+      userEquipment.map(async (item) => {
+        await this.equipmentService.update(item.id, {
+          name: item.name,
+          type: item.type,
+          serialNumber: item.serialNumber,
+          userID: '85b28913-2a1d-4b80-99d0-686f72d6d4eb',
+        });
+      }),
+    );
+
+    const userToDelete = await User.findOne({ where: { id } });
+    if (userToDelete) {
+      await userToDelete.remove();
+      return `Ten kod usuwa użytkownika o id: ${id}`;
+    } else {
+      throw new Error(`Nie znaleziono użytkownika o id: ${id}`);
+    }
   }
 
   async getData(): Promise<UsersIdAndLastnameResponse[]> {
