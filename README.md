@@ -1,5 +1,6 @@
-```markdown
-# InventoryIT
+## InventoryIT
+
+```
 
 InventoryIT is a backend API for managing and inventorying computer equipment in a company. It is built with Nest.js framework in TypeScript language. It is a RESTful application that allows users to perform CRUD operations on users and equipment data.
 
