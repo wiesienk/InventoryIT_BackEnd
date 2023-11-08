@@ -2,11 +2,14 @@
 
 ```
 
-InventoryIT is a backend API for managing and inventorying computer equipment in a company. It is built with Nest.js framework in TypeScript language. It is a RESTful application that allows users to perform CRUD operations on users and equipment data.
+InventoryIT is a backend API for managing and inventorying computer equipment in a company.
+It is built with Nest.js framework in TypeScript language.
+It is a RESTful application that allows users to perform CRUD operations on users and equipment data.
 
 ## Installation
 
-To install the project, you need to have Node.js and npm installed on your machine. Then, clone the project from GitHub and run the following command in the project directory:
+To install the project, you need to have Node.js and npm installed on your machine.
+Then, clone the project from GitHub and run the following command in the project directory:
 
 ```
 npm install
@@ -22,7 +25,8 @@ To run the project, use the following command:
 npm run start
 ```
 
-This will start the server on port 3000. You can then use a tool like Postman or curl to send requests to the API endpoints. The available endpoints are:
+This will start the server on port 3000. You can then use a tool like Postman or curl to send requests to the API endpoints. 
+The available endpoints are:
 
 - `/user` - for managing users and equipment, supports GET, POST, PATCH, and DELETE methods
 - `/equipment` - for managing equipment, supports GET, POST, PATCH, and DELETE methods
