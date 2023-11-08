@@ -8,7 +8,7 @@ InventoryIT is a backend API for managing and inventorying computer equipment in
 
 To install the project, you need to have Node.js and npm installed on your machine. Then, clone the project from GitHub and run the following command in the project directory:
 
-```bash
+```
 npm install
 ```
 
