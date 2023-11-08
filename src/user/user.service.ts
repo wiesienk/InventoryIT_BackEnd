@@ -62,7 +62,7 @@ export class UserService {
     const userToDelete = await User.findOne({ where: { id } });
     if (userToDelete) {
       await userToDelete.remove();
-      return `Ten kod usuwa użytkownika o id: ${id}`;
+      return `Usunięto użytkownika o id: ${id}`;
     } else {
       throw new Error(`Nie znaleziono użytkownika o id: ${id}`);
     }
